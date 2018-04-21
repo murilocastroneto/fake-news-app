@@ -1,0 +1,43 @@
+/**
+ * Write your model definitions here
+ */
+
+namespace fake.news.biz
+
+asset News identified by news_id {
+    o String news_id
+    o String title
+    o String text
+    o Boolean published
+    o Boolean validated
+    o Boolean validationResult optional
+    --> Member[] validators
+}
+
+participant Member identified by member_identification {
+    o String member_identification
+    o Double rating
+}
+
+transaction Publish_Vote {
+    --> News news
+    --> Member voter
+    o Boolean vote
+    o String event_type
+    //o Event event_type
+    //o Source[] sources
+}
+
+transaction Register_News {
+   o String title
+   o String text
+}
+
+concept Source {
+  o String source regex=/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
+}
+
+enum Event {
+    o PUBLISH
+    o VOTE
+}
