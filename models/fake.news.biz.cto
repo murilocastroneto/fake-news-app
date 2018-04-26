@@ -11,7 +11,7 @@ asset News identified by news_id {
     o Boolean published
     o Boolean validated
     o Boolean validationResult optional
-    --> Member[] validators
+    o Vote[] votes
 }
 
 participant Member identified by member_identification {
@@ -26,6 +26,12 @@ transaction Publish_Vote {
     o String event_type
     //o Event event_type
     //o Source[] sources
+}
+
+concept Vote {
+	--> Member voter
+    o Boolean vote
+    o String event_type
 }
 
 transaction Register_News {
