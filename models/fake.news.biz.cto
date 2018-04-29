@@ -17,6 +17,7 @@ asset News identified by news_id {
 participant Member identified by member_identification {
     o String member_identification
     o Double rating
+    o Boolean banned
 }
 
 transaction Publish_Vote {
