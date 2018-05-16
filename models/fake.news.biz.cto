@@ -5,10 +5,10 @@
 namespace fake.news.biz
 
 asset News identified by news_id {
-    o String news_id
+    o String id
     o String title
-    o String text
-    o Boolean published
+    o String desc
+    o String[] sources optional
     o Boolean validated
     o Boolean validationResult optional
     o Vote[] votes
@@ -20,31 +20,23 @@ participant Member identified by member_identification {
     o Boolean banned
 }
 
-transaction Publish_Vote {
-    --> News news
-    --> Member voter
+transaction PublishNews {
+    --> Member pubrlisher
+    o String news_id
+    o String news_title
+    o String news_desc
+    o String[] news_sources optional
     o Boolean vote
-    o String event_type
-    //o Event event_type
-    //o Source[] sources
+}
+
+transaction VoteNews {
+    --> Member voter
+    --> News news
+    o Boolean vote
 }
 
 concept Vote {
-	--> Member voter
+	  --> Member voter
     o Boolean vote
-    o String event_type
-}
-
-transaction Register_News {
-   o String title
-   o String text
-}
-
-concept Source {
-  o String source regex=/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
-}
-
-enum Event {
-    o PUBLISH
-    o VOTE
+    o Boolean publishment
 }
