@@ -1,5 +1,6 @@
 /**
  * Access control rules for tutorial-network
+ * add more rules to this file before delivering it
  */
 rule Default {
     description: "Allow all participants access to all resources"

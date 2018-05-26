@@ -1,0 +1,9 @@
+/**
+ * New query file
+ */
+query Q1 {
+    description: "Select all news that has already been validated"
+    statement:
+        SELECT fake.news.biz.News
+            WHERE (validationResult == true OR validationResult == false)
+}

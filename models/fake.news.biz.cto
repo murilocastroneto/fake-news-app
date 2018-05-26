@@ -5,10 +5,11 @@
 namespace fake.news.biz
 
 asset News identified by news_id {
-    o String id
+    o String news_id
     o String title
     o String desc
-    o String[] sources optional
+    o String url
+    o String[] othersources optional
     o Boolean validated
     o Boolean validationResult optional
     o Vote[] votes
@@ -21,16 +22,15 @@ participant Member identified by member_identification {
 }
 
 transaction PublishNews {
-    --> Member pubrlisher
     o String news_id
     o String news_title
     o String news_desc
-    o String[] news_sources optional
+    o String news_url
+    o String[] news_otherSources optional
     o Boolean vote
 }
 
 transaction VoteNews {
-    --> Member voter
     --> News news
     o Boolean vote
 }
