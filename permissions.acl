@@ -17,3 +17,12 @@ rule SystemACL {
   resource: "org.hyperledger.composer.system.**"
   action: ALLOW
 }
+
+rule BannedParticipantAccessRule {
+    description: "Banned users cannot read or submit transactions"
+    participant(m): "fake.news.biz.Member"
+    operation: ALL
+    resource(v): "fake.news.biz.*"
+    condition: (m.banned)
+    action: DENY
+}
