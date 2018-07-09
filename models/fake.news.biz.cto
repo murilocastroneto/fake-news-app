@@ -5,7 +5,7 @@
 namespace fake.news.biz
 
 asset News identified by news_id {
-    o String news_id
+    o String news_id regex=/^[0-9]/
     o String title
     o String desc
     o String url
@@ -16,7 +16,7 @@ asset News identified by news_id {
 }
 
 participant Member identified by member_identification {
-    o String member_identification
+    o String member_identification regex=/^[0-9]/
     o Double rating
     o Boolean banned
 }
